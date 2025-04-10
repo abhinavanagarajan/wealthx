@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   CreditCard,
-  Plus,
   ArrowUpRight,
   ArrowDownRight,
   Shield,
