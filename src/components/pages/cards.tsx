@@ -100,9 +100,9 @@ export function Cards() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold tracking-tight">Cards & Transactions</h2>
-        <Button>
+{/*         <Button>
           <Plus className="mr-2 h-4 w-4" /> Add New Card
-        </Button>
+        </Button> */}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
