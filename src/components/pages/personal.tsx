@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { Plus, Wallet, ArrowUpRight, ArrowDownRight, PiggyBank, Receipt, CreditCard } from 'lucide-react';
+import { Wallet, ArrowUpRight, ArrowDownRight, PiggyBank, Receipt, CreditCard } from 'lucide-react';
 
 const expenseData = [
   { month: 'Jan', amount: 45000 },
