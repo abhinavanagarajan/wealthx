@@ -11,8 +11,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { TrendingUp, ArrowUpRight, ArrowDownRight, Building2, Briefcase, PiggyBank, LineChart as ChartIcon } from 'lucide-react';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { TrendingUp, ArrowUpRight, Building2, Briefcase, PiggyBank, LineChart as ChartIcon } from 'lucide-react';
+
+type RawStockData = {
+  date: string;
+  close: number;
+  volume: number;
+};
+
+type FormattedStockData = {
+  date: string;
+  price: number;
+  volume: number;
+};
+
 
 const stocks = [
   { symbol: 'WMT', name: 'Walmart Inc.' },
@@ -60,7 +73,8 @@ const realEstate = [
 export function Wealth() {
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedStock, setSelectedStock] = useState('MSFT');
-  const [stockData, setStockData] = useState([]);
+  //const [stockData, setStockData] = useState([]);
+  const [stockData, setStockData] = useState<FormattedStockData[]>([]);
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {
@@ -71,7 +85,8 @@ export function Wealth() {
           `https://api.marketstack.com/v1/eod?access_key=ec340342004d65b14f2280f40bec044b&symbols=${selectedStock}&limit=100`
         );
         const data = await response.json();
-        const formattedData = data.data.map(item => ({
+        
+        const formattedData = (data.data as RawStockData[]).map((item) => ({
           date: new Date(item.date).toLocaleDateString(),
           price: item.close,
           volume: item.volume,
@@ -240,7 +255,7 @@ export function Wealth() {
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={stockData}>
                       {/* <CartesianGrid strokeDasharray="0 0" /> */}
-                      <XAxis
+                      {/* <XAxis
                         dataKey="date"
                         tickFormatter={(function() { // Wrap in an IIFE
                           const tickFormatter = (value) => {
@@ -264,7 +279,40 @@ export function Wealth() {
                           tickFormatter.lastMonth = null; // Initialize within the IIFE
                           return tickFormatter;
                         })()} // Immediately invoke the IIFE
+                      /> */}
+
+                      <XAxis
+                        dataKey="date"
+                        tickFormatter={(function () {
+                          type TickFormatterFn = ((value: string) => string) & { lastMonth: string | null };
+                        
+                          const tickFormatter: TickFormatterFn = (value: string) => {
+                            if (!value) return '';
+                        
+                            const [,monthStr , year] = value.split('/');
+                            const month = parseInt(monthStr, 10);
+                        
+                            const monthNames = [
+                              'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+                            ];
+                        
+                            const monthName = monthNames[month - 1] ?? '';
+                            const key = `${year}-${monthName}`;
+                        
+                            if (key !== tickFormatter.lastMonth) {
+                              tickFormatter.lastMonth = key;
+                              return monthName;
+                            }
+                            return '';
+                          };
+                        
+                          tickFormatter.lastMonth = null;
+                          return tickFormatter;
+                        })()}
+                        
                       />
+
                       <YAxis domain={['auto', 'auto']} />
                       <Tooltip
                         formatter={(value) => [`$${value}`, 'Price']}

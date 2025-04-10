@@ -189,9 +189,9 @@ export function Cards() {
                         <div className="flex justify-between text-sm">
                           <span>Valid Thru: {card.expiry}</span>
                           {card.type === 'Credit Card' ? (
-                            <span>Limit: ₹{card.limit.toLocaleString()}</span>
+                            <span>Limit: ₹{card.limit!.toLocaleString() ?? "N/A"}</span>
                           ) : (
-                            <span>Balance: ₹{card.balance.toLocaleString()}</span>
+                            <span>Balance: ₹{card.balance!.toLocaleString() ?? "N/A" }</span>
                           )}
                         </div>
                       </div>
@@ -200,12 +200,12 @@ export function Cards() {
                       <div className="space-y-2">
                         <div className="flex justify-between text-sm">
                           <span>Credit Utilized</span>
-                          <span>₹{card.used.toLocaleString()}</span>
+                          <span>₹{card.used!.toLocaleString()}</span>
                         </div>
                         <div className="h-2 rounded-full bg-secondary">
                           <div
                             className="h-full rounded-full bg-primary"
-                            style={{ width: `${(card.used / card.limit) * 100}%` }}
+                            style={{ width: `${(card.used! / card.limit!) * 100}%` }}
                           />
                         </div>
                       </div>

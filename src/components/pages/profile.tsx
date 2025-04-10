@@ -6,17 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Switch } from '@/components/ui/switch';
-import {
-  User,
-  Mail,
-  Phone,
-  MapPin,
-  Bell,
-  Lock,
-  CreditCard,
-  Languages,
-  Sun,
-} from 'lucide-react';
+import { CreditCard } from 'lucide-react';
 
 export function Profile() {
   const [activeTab, setActiveTab] = useState('personal');

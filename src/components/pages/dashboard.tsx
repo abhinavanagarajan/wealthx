@@ -62,7 +62,7 @@ export function Dashboard() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip formatter={(value, name) => [`Spent: $${value}`]} />
+              <Tooltip formatter={(value) => [`Spent: $${value}`]} />
               <Line
                 type="monotone"
                 dataKey="value"
