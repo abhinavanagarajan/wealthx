@@ -40,9 +40,9 @@ export function Personal() {
     <div className="space-y-8">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold tracking-tight">Personal Finance</h2>
-        <Button>
+{/*         <Button>
           <Plus className="mr-2 h-4 w-4" /> Add Transaction
-        </Button>
+        </Button> */}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
