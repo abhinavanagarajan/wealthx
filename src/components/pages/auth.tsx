@@ -48,14 +48,14 @@ export function Auth({ onLogin }: AuthProps) {
         <CardContent>
           {/* Development Mode Button */}
           <div className="mb-6 text-center">
-            <Button
+{/*             <Button
               variant="outline"
               size="sm"
               onClick={onLogin}
               className="text-xs text-muted-foreground hover:text-foreground"
             >
               Development Mode (Skip Login)
-            </Button>
+            </Button> */}
           </div>
 
           <Tabs value={activeTab} onValueChange={setActiveTab}>
