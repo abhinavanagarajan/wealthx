@@ -82,7 +82,7 @@ export function Wealth() {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://api.marketstack.com/v1/eod?access_key=ec340342004d65b14f2280f40bec044b&symbols=${selectedStock}&limit=100`
+          `https://api.marketstack.com/v1/eod?access_key=0534ee0944e54c6d4bd35dfcc1b31ba1&symbols=${selectedStock}&limit=100`
         );
         const data = await response.json();
         
